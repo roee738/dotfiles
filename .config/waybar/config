@@ -1,0 +1,89 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["bluetooth", "network", "backlight", "pulseaudio", "battery", "tray"],
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "active": "󱓻"
+    },
+    "persistent-workspaces": {
+      "*": 5
+    }
+  },
+  "clock": {
+    "format": "{:%a %b %d  %H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+        "mode": "month",
+        "format": {
+            "months": "<span color='#ffead3'><b>{}</b></span>",
+            "days": "<span color='#ecc6d9'><b>{}</b></span>",
+            "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+            "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+            "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+        }
+    }
+  },
+  "battery": {
+    "states": {
+        "warning": 30,
+        "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "{icon} {capacity}%",
+    "format-plugged": "󱟢",
+    "format-icons": {
+    	"default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+      "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
+	},
+    "tooltip-format": "{timeTo}"
+  },
+  "bluetooth": {
+    "format-on": "󰂯",
+    "format-connected": "󰂱",
+    "format-disabled": "󰂲",
+    "on-click": "rofi-bluetooth"
+  },
+  "network": {
+    "format-wifi": "{icon}",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-disconnected": "󰤮",
+    "format-disabled": "󰤫",
+    "tooltip-format": "{essid} {signalStrength}%",
+    "tooltip-format-disconnected": "Disconnected",
+    "tooltip-format-disabled": "Disabled",
+    "on-click": "networkmanager_dmenu"
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "tooltip": false
+  },
+  "tray": {
+	"icon-size": 17,
+	"spacing": 10
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "󰋋 {volume}%",
+    "format-muted": "󰖁",
+    "format-icons": {
+    	"default": ["󰕿", "󰖀", "󰕾"]
+	},
+    "on-click": "pavucontrol",
+    "tooltip": false
+  }
+}

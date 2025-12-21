@@ -1,0 +1,45 @@
+* {
+	font-family: 'JetBrainsMono Nerd Font';
+	font-size: 16px;
+}
+
+window#waybar {
+	background-color: #11111b;
+}
+
+#workspaces button {
+	padding: 0 6px;
+}
+
+#workspaces button.active {
+	color: #ff79c6;
+}
+
+#workspaces button:not(.active):not(.empty) {
+	color: #fab387;
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0.3;
+	}
+}
+
+#battery.warning:not(.charging) {
+	color: #fab387;
+	background-color: transparent;
+}
+
+#battery.critical:not(.charging) {
+	color: #f38ba8;
+	background-color: transparent;
+	animation: blink 1s ease-in-out infinite alternate;
+}
+
+#network {
+	margin-right: 4px;
+}
+
+#bluetooth, #network, #backlight, #pulseaudio, #battery, #tray{
+	padding: 0 6px;
+}
