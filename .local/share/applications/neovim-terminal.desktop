@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Neovim (Terminal)
+Comment=Edit text files in Neovim
+Exec=kitty nvim %F
+Terminal=false
+Type=Application
+MimeType=text/plain;
+Categories=Utility;TextEditor;
