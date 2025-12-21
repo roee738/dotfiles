@@ -13,7 +13,7 @@ frame_width = 0
 corner_radius = 10
 idle_threshold = 120
 
-font = DM Sans 12
+font = Iosevka Extended 12
 markup = full
 format = "<span weight='bold' font='12'>%s</span>\n%b"
 show_age_threshold = 60
