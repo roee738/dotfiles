@@ -22,8 +22,8 @@ source ~/.zshrc
 
 ## Daily Usage
 ```bash
-config status              # Check what changed
-config add <file>          # Add files
+config status              # Check what's changed
+config add -u              # Add all changed files
 config commit -m "msg"     # Commit
 config push                # Push to GitHub
 ```
