@@ -30,5 +30,5 @@ config push                # Push to GitHub
 
 ## Daily Usage Alias
 ```bash
-cacp "msg"      # One liner to do all of the above
+cacp "msg"                 # One-liner to do all of the above
 ```
