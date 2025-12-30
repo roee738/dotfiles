@@ -27,3 +27,8 @@ config add -u              # Add all changed files
 config commit -m "msg"     # Commit
 config push                # Push to GitHub
 ```
+
+## Daily Usage Alias
+```bash
+cacp "msg"      # One liner to do all of the above
+```
