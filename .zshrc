@@ -18,3 +18,6 @@ source ~/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 alias config='/usr/bin/git --git-dir=/home/roee/.dotfiles/ --work-tree=/home/roee'
+cacp() {
+    config add -u && config commit -m "$1" && config push  
+}
