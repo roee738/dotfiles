@@ -29,6 +29,25 @@ config push                # Push to GitHub
 ```
 
 ## Daily Usage Alias
+
+Add the `cacp` function to your `.zshrc`:
 ```bash
-cacp "msg"                 # One-liner to do all of the above
+cacp() {
+    config add -u && config commit -m "$1" && config push  
+}
+```
+
+Reload your shell configuration:
+```bash
+source ~/.zshrc
+```
+
+Use the `cacp` function for quick updates:
+```bash
+cacp "your commit message"
+```
+
+Example:
+```bash
+cacp "Updated config files"
 ```
