@@ -20,28 +20,40 @@ bindkey '^[[B' history-substring-search-down
 
 # Dotfiles repo
 config() {
-    /usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
-}
-
-cacp() {
-    if [[ -z "$1" ]]; then
-        echo "Usage: cacp \"commit message\""
+  local cmd="$1"
+  shift || true
+  case "$cmd" in
+    sync)
+      if [[ -z "$1" ]]; then
+        echo "Usage: config sync \"commit message\""
         return 1
-    fi
-    
-    config add -u && config commit -m "$1" && config push
+      fi
+      config add -u &&
+      config commit -m "$1" &&
+      config push
+      ;;
+    *)
+      /usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$cmd" "$@"
+      ;;
+  esac
 }
 
 # School repo
 school() {
-    git -C "$HOME/school" "$@"
-}
-
-sacp() {
-    if [[ -z "$1" ]]; then
-        echo "Usage: sacp \"commit message\""
+  local cmd="$1"
+  shift || true
+  case "$cmd" in
+    sync)
+      if [[ -z "$1" ]]; then
+        echo "Usage: school sync \"commit message\""
         return 1
-    fi
-    
-    school add . && school commit -m "$1" && school push
+      fi
+      school add . &&
+      school commit -m "$1" &&
+      school push
+      ;;
+    *)
+      git -C "$HOME/school" "$cmd" "$@"
+      ;;
+  esac
 }
