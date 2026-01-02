@@ -1,4 +1,5 @@
 ## Setup Git Sync on New Machine
+```bash
 # Install git
 sudo pacman -S git
 
@@ -11,3 +12,4 @@ git clone --bare https://github.com/roee738/dotfiles.git $HOME/.dotfiles
 
 # Reload shell
 source ~/.zshrc
+```
