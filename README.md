@@ -1,53 +1,13 @@
 ## Setup Git Sync on New Machine
-```bash
 # Install git
 sudo pacman -S git
 
-# Clone the bare repository
+# Clone the bare repo
 git clone --bare https://github.com/roee738/dotfiles.git $HOME/.dotfiles
 
-# Setup the config alias
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
 # Restore all config files
-config checkout
+/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
+/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
 
-# Configure the repo
-config config --local status.showUntrackedFiles no
-
-# Add alias permanently to zshrc
-echo "alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> ~/.zshrc
+# Reload shell
 source ~/.zshrc
-```
-
-## Daily Usage
-```bash
-config status              # Check what's changed
-config add -u              # Add all changed files
-config commit -m "msg"     # Commit
-config push                # Push to GitHub
-```
-
-## Daily Usage Alias
-
-Add the `cacp` function to your `.zshrc`:
-```bash
-cacp() {
-    config add -u && config commit -m "$1" && config push  
-}
-```
-
-Reload your shell configuration:
-```bash
-source ~/.zshrc
-```
-
-Use the `cacp` function for quick updates:
-```bash
-cacp "your commit message"
-```
-
-Example:
-```bash
-cacp "Updated config files"
-```

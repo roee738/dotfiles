@@ -18,12 +18,30 @@ source ~/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-alias config='/usr/bin/git --git-dir=/home/roee/.dotfiles/ --work-tree=/home/roee'
-cacp() {
-    config add -u && config commit -m "$1" && config push  
+# Dotfiles repo
+config() {
+    /usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$@"
 }
 
-alias school='git -C /home/roee/school'
+cacp() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: cacp \"commit message\""
+        return 1
+    fi
+    
+    config add -u && config commit -m "$1" && config push
+}
+
+# School repo
+school() {
+    git -C "$HOME/school" "$@"
+}
+
 sacp() {
-    school add . && school commit -m "$1" && school push  
+    if [[ -z "$1" ]]; then
+        echo "Usage: sacp \"commit message\""
+        return 1
+    fi
+    
+    school add . && school commit -m "$1" && school push
 }
