@@ -1,7 +1,7 @@
 autoload -Uz compinit
 compinit -C
 
-export PROMPT="%~ > "
+export PROMPT="%~ >  "
 
 HISTFILE=~/.zsh_history
 HISTSIZE=8000
