@@ -24,12 +24,12 @@ config() {
 }
 
 cacp() {
-    if [[ -z "$1" ]]; then
-        echo "Usage: cacp \"commit message\""
+    if [[ -z "$*" ]]; then
+        echo "Usage: cacp commit message"
         return 1
     fi
     
-    config add -u && config commit -m "$1" && config push
+    config add -u && config commit -m "$*" && config push
 }
 
 # School repo
@@ -38,10 +38,10 @@ school() {
 }
 
 sacp() {
-    if [[ -z "$1" ]]; then
-        echo "Usage: sacp \"commit message\""
+    if [[ -z "$*" ]]; then
+        echo "Usage: sacp commit message"
         return 1
     fi
     
-    school add . && school commit -m "$1" && school push
+    school add . && school commit -m "$*" && school push
 }
