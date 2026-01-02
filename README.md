@@ -1,5 +1,5 @@
-## Setup Git Sync on New Machine
 ```bash
+## Setup Git Sync on New Machine
 # Install git
 sudo pacman -S git
 
@@ -12,4 +12,8 @@ git clone --bare https://github.com/roee738/dotfiles.git $HOME/.dotfiles
 
 # Reload shell
 source ~/.zshrc
+
+## Usage
+config sync "your commit mesage"    # Quick add, commit, & push
+config status                       # Normal git commands work too
 ```
