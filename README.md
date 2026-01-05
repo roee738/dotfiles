@@ -1,8 +1,5 @@
 ```bash
 ## Setup Git Sync on New Machine
-# Install git
-sudo pacman -S git
-
 # Clone the bare repo
 git clone --bare https://github.com/roee738/dotfiles.git $HOME/.dotfiles
 
