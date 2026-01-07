@@ -41,7 +41,6 @@ tree-sitter-cli
 ttc-iosevka
 ttf-dejavu-nerd
 ttf-iosevka-nerd
-ttf-jetbrains-mono-nerd
 unrar
 unzip
 waybar
