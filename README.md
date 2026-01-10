@@ -1,5 +1,10 @@
 ```bash
 ## Setup Git Sync on New Machine
+# Update mirrors
+sudo pacman -S --needed reflector
+sudo reflector --protocol https --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
+sudo pacman -Sy
+
 # Edit pacman.conf
 sudo nvim /etc/pacman.conf
 
