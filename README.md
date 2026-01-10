@@ -17,6 +17,9 @@ Color
 VerbosePkgLists
 ParallelDownloads = 10
 
+# Install yay
+sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+
 # Change default shell to zsh
 sudo pacman -S --needed zsh
 chsh -s $(which zsh)
