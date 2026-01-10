@@ -1,7 +1,9 @@
 ```bash
 ## Setup New Machine
+# Download all packages
+sudo pacman -S --needed - < pkglist.txt
+
 # Update mirrors
-sudo pacman -S --needed reflector
 sudo reflector --protocol https --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -Sy
 
@@ -16,9 +18,6 @@ Include = /etc/pacman.d/mirrorlist
 Color
 VerbosePkgLists
 ParallelDownloads = 10
-
-# Install zsh if not already installed
-sudo pacman -S --needed zsh
 
 # Change default shell to zsh
 chsh -s $(which zsh)
