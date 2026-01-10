@@ -1,5 +1,17 @@
 ```bash
 ## Setup Git Sync on New Machine
+# Edit pacman.conf
+sudo nvim /etc/pacman.conf
+
+# Uncomment multilib
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+
+# Uncomment in Misc options section
+Color
+VerbosePkgLists
+ParallelDownloads = 10
+
 # Install zsh if not already installed
 sudo pacman -S --needed zsh
 
