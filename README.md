@@ -1,9 +1,7 @@
 ```bash
 ## Setup New Machine
-# Download all packages
-sudo pacman -S --needed - < pkglist.txt
-
 # Update mirrors
+sudo pacman -S --needed reflector
 sudo reflector --protocol https --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -Sy
 
@@ -20,6 +18,7 @@ VerbosePkgLists
 ParallelDownloads = 10
 
 # Change default shell to zsh
+sudo pacman -S --needed zsh
 chsh -s $(which zsh)
 
 # Log out and log back in (or reboot) for shell change to take effect
@@ -32,6 +31,9 @@ git clone --bare https://github.com/roee738/dotfiles.git $HOME/.dotfiles
 # Restore all config files
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
+
+# Download all packages
+sudo pacman -S --needed - < ~/.config/pkglist.txt
 
 # Install zsh plugins
 mkdir -p ~/.config/zsh/plugins
