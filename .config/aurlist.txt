@@ -3,3 +3,4 @@ bibata-cursor-theme-bin
 catppuccin-gtk-theme-mocha
 rofi-bluetooth-git
 visual-studio-code-bin
+zen-browser-bin
