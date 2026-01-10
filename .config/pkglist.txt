@@ -1,15 +1,11 @@
 acpi
 blueman
 brightnessctl
-btop
 cliphist
-discord
 dunst
-firefox
 git
 grim
 hypridle
-hyprland
 hyprlock
 hyprpaper
 hyprpicker
@@ -27,8 +23,6 @@ networkmanager-dmenu
 noto-fonts
 noto-fonts-emoji
 nwg-displays
-nwg-look
-obsidian
 papirus-icon-theme
 pavucontrol
 python-pip
@@ -36,7 +30,6 @@ reflector
 rofi
 slurp
 thunar
-tree-sitter-cli
 ttc-iosevka
 ttf-dejavu-nerd
 ttf-iosevka-nerd
@@ -44,4 +37,3 @@ unrar
 unzip
 waybar
 wl-clipboard
-zsh
