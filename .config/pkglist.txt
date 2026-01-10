@@ -17,7 +17,6 @@ kitty
 man-db
 mpv
 neovim
-network-manager-applet
 networkmanager
 networkmanager-dmenu
 noto-fonts
