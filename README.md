@@ -1,5 +1,11 @@
 ```bash
 ## Setup Git Sync on New Machine
+# Install zsh if not already installed
+sudo pacman -S --needed zsh
+
+# Change default shell to zsh
+chsh -s $(which zsh)
+
 # Clone the bare repo
 git clone --bare https://github.com/roee738/dotfiles.git $HOME/.dotfiles
 
@@ -13,7 +19,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-history-substring-search ~/.config/zsh/plugins/zsh-history-substring-search
 
-# Reload shell
+# Log out and log back in for shell change to take effect, then:
 source ~/.zshrc
 
 ## Usage
