@@ -3,7 +3,7 @@
 # Update mirrors
 sudo pacman -S --needed reflector
 sudo reflector --protocol https --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
-sudo pacman -Sy
+sudo pacman -Syu
 
 # Edit pacman.conf
 sudo nvim /etc/pacman.conf
@@ -18,7 +18,7 @@ VerbosePkgLists
 ParallelDownloads = 10
 
 # Install yay
-sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+sudo pacman -S --needed git base-devel go && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 
 # Change default shell to zsh
 sudo pacman -S --needed zsh
