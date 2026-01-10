@@ -1,5 +1,5 @@
 ```bash
-## Setup Git Sync on New Machine
+## Setup New Machine
 # Update mirrors
 sudo pacman -S --needed reflector
 sudo reflector --protocol https --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
@@ -26,6 +26,7 @@ chsh -s $(which zsh)
 # Log out and log back in (or reboot) for shell change to take effect
 # Then continue with the steps below:
 
+## Setup Git Sync
 # Clone the bare repo
 git clone --bare https://github.com/roee738/dotfiles.git $HOME/.dotfiles
 
