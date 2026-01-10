@@ -35,7 +35,6 @@ python-pip
 reflector
 rofi
 slurp
-steam
 thunar
 tree-sitter-cli
 ttc-iosevka
