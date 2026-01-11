@@ -31,14 +31,14 @@ chsh -s $(which zsh)
 # Clone the bare repo
 git clone --bare https://github.com/roee738/dotfiles.git $HOME/.dotfiles
 
-# Rename hyprland config
+# Rename hyprland conf
 mv ~/.config/hypr/hyprland.conf ~/.config/hypr/hyprland1.conf
 
 # Restore all config files
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
 
-# Remove default hyprland config
+# Remove default hyprland conf
 rm ~/.config/hypr/hyprland1.conf
 
 # Download all packages
