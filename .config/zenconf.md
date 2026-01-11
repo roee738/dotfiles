@@ -31,4 +31,5 @@
     - gmail (bouskilare) essential
     - chatgpt essential
     - pinned: uvic, brightspace, outlook, github
+25. Go to about:config, and set zen.view.compact.show-sidebar-and-toolbar-on-hover to false
 ```
