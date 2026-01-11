@@ -14,4 +14,21 @@
 12. Uncheck save and autofill payment
 13. Uncheck save addresses
 14. In Zen Mods, install Ghost Tabs, Private Mode Highlighting, and Remove Tab X
+15. Retitle Space to Me, change icon to water droplet, set profile to personal
+16. Edit theme to orange-y gradient
+17. Create a new space called School with graduation cap icon
+18. Edit theme to blue-ish gradient
+19. Go back to Zen Settings and access Container Tabs Settings
+20. Remove Banking and Shopping and rename Work to School
+21. Change color of School container to blue and icon to glasses
+22. Change color of Personal to orange
+23. For Me container:
+    - gmail (bouskilare) essential tab
+    - claude essential
+    - chatgpt essential
+    - pinned: gmail (roee738), google maps, td, koodo, telus, bc hydro, google calendar, weather network, youtube
+24. For School container:
+    - gmail (bouskilare) essential
+    - chatgpt essential
+    - pinned: uvic, brightspace, outlook, github
 ```
