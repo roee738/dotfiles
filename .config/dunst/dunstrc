@@ -9,7 +9,7 @@ padding = 15
 horizontal_padding = 25
 frame_width = 2
 
-font = Iosevka Extended 12
+font = Iosevka Aile 12
 show_age_threshold = -1
 
 [urgency_low]
