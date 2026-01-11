@@ -31,9 +31,15 @@ chsh -s $(which zsh)
 # Clone the bare repo
 git clone --bare https://github.com/roee738/dotfiles.git $HOME/.dotfiles
 
+# Rename hyprland.conf
+mv ~/.config/hypr/hyprland.conf ~/.config/hypr/hyprland1.conf
+
 # Restore all config files
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
+
+# Remove default hyprland.conf
+rm ~/.config/hypr/hyprland1.conf
 
 # Download all packages
 sudo pacman -S --needed - < ~/.config/pkglist.txt
@@ -46,6 +52,15 @@ git clone https://github.com/zsh-users/zsh-history-substring-search ~/.config/zs
 
 # Reload zsh config
 source ~/.zshrc
+
+# Install AUR packages
+yay -S --needed - < ~/.config/aurlist.txt
+
+# Start auto-cpufreq
+sudo auto-cpufreq --install
+
+# Initialize git push
+git push --set-upstream origin main
 
 ## Usage
 config sync "your commit mesage"    # Quick add, commit, & push
