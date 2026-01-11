@@ -21,6 +21,7 @@ networkmanager
 networkmanager-dmenu
 noto-fonts
 noto-fonts-emoji
+nwg-look
 papirus-icon-theme
 pavucontrol
 python-pip
