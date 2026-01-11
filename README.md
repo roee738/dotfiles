@@ -46,9 +46,6 @@ git config --global credential.helper store
 git config --global user.name "roee"
 git config --global user.email "roee738@gmail.com"
 
-# Make a commit in order to set credentials locally
-config sync "update"
-
 # Download all packages
 sudo pacman -S --needed - < ~/.config/pkglist.txt
 
@@ -67,8 +64,8 @@ yay -S --needed - < ~/.config/aurlist.txt
 # Start auto-cpufreq
 sudo auto-cpufreq --install
 
-# Initialize git push
-git push --set-upstream origin main
+# Make a commit in order to set credentials locally
+config sync "update"
 
 ## Usage
 config sync "your commit mesage"    # Quick add, commit, & push
