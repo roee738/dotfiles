@@ -13,10 +13,12 @@ font = Iosevka Aile 12
 show_age_threshold = -1
 
 [urgency_low]
+timeout = 3
 background = "#1e1e2e"
 foreground = "#cdd6f4"
 
 [urgency_normal]
+timeout = 5
 background = "#1e1e2e"
 foreground = "#cdd6f4"
 
