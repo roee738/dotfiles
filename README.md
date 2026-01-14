@@ -29,7 +29,7 @@ chsh -s $(which zsh)
 
 ## Setup Git Sync
 # Clone the bare repo
-git clone --bare https://github.com/roee738/dotfiles.git $HOME/.dotfiles
+git clone --bare https://codeberg.org/roee738/dotfiles.git $HOME/.dotfiles
 
 # Rename hyprland conf
 mv ~/.config/hypr/hyprland.conf ~/.config/hypr/hyprland1.conf
