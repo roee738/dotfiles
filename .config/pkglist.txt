@@ -30,6 +30,7 @@ rofi
 slurp
 thunar
 ttc-iosevka
+ttc-iosevka-aile
 ttf-dejavu-nerd
 ttf-iosevka-nerd
 unrar
