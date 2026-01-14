@@ -38,9 +38,6 @@ mv ~/.config/hypr/hyprland.conf ~/.config/hypr/hyprland1.conf
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
 
-# Set upstream branch
-/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME branch --set-upstream-to=origin/main main
-
 # Remove default hyprland conf
 rm ~/.config/hypr/hyprland1.conf
 
