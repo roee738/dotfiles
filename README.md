@@ -135,7 +135,7 @@ sudo nvim /etc/systemd/logind.conf
 HandleSuspendKey=ignore
 HandleSuspendKeyLongPress=ignore
 
-# Reboot system
+# Reboot system after
 ```
 
 ## Usage
