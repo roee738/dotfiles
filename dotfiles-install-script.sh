@@ -87,11 +87,6 @@ print_info "Restoring dotfiles..."
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
 print_success "Dotfiles restored"
 
-# Set git upstream
-print_info "Setting git upstream..."
-/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME branch --set-upstream-to=origin/main main
-print_success "Git upstream configured"
-
 # Configure git credentials
 print_info "Configuring git credentials..."
 read -p "Enter your git username: " git_username
