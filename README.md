@@ -57,28 +57,16 @@ chsh -s $(which zsh)
 git clone --bare https://codeberg.org/roee738/dotfiles.git $HOME/.dotfiles
 ```
 
-### Rename Hyprland Config
-
-```bash
-mv ~/.config/hypr/hyprland.conf ~/.config/hypr/hyprland1.conf
-```
-
 ### Restore All Config Files
 
 ```bash
-/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout
+/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout -f
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
 ```
 ### Set Git Upstream
 
 ```bash
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME branch --set-upstream-to=origin/main main
-```
-
-### Remove Default Hyprland Config
-
-```bash
-rm ~/.config/hypr/hyprland1.conf
 ```
 
 ### Configure Git Credentials
