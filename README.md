@@ -126,6 +126,18 @@ yay -S --needed - < ~/.config/aurlist.txt
 sudo auto-cpufreq --install
 ```
 
+### Disable sleep key
+
+```bash
+sudo nvim /etc/systemd/logind.conf
+
+# Uncomment and amend these lines:
+HandleSuspendKey=ignore
+HandleSuspendKeyLongPress=ignore
+
+# Reboot system
+```
+
 ## Usage
 
 ```bash
