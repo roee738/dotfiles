@@ -122,6 +122,12 @@ yay -S --needed - < ~/.config/aurlist.txt
 sudo auto-cpufreq --install
 ```
 
+### Apply GTK Settings
+
+```bash
+nwg-look -a
+```
+
 ## Usage
 
 ```bash
