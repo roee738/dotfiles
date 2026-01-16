@@ -8,8 +8,8 @@ For automated setup on a fresh Arch system:
 # Download and run the install script
 sudo pacman -S --needed curl
 curl -o install.sh https://codeberg.org/roee738/dotfiles/raw/branch/main/dotfiles-install-script.sh
-chmod +x dotfiles-install-script.sh
-./dotfiles-install-script.sh
+chmod +x install.sh
+./install.sh
 ```
 
 After installation completes, log out and log back in (or reboot) for all changes to take effect.
