@@ -1,6 +1,22 @@
 # Arch Linux Dotfiles Setup
 
-## Setup New Machine
+## Quick Install (Recommended)
+
+For automated setup on a fresh Arch system:
+
+```bash
+# Download and run the install script
+sudo pacman -S --needed curl
+curl -o install.sh https://codeberg.org/roee738/dotfiles/raw/branch/main/dotfiles-install-script.sh
+chmod +x dotfiles-install-script.sh
+./dotfiles-install-script.sh
+```
+
+After installation completes, log out and log back in (or reboot) for all changes to take effect.
+
+## Manual Setup
+
+If you prefer to set up manually, follow these steps:
 
 ### Update Mirrors
 
