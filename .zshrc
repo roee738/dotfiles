@@ -18,14 +18,19 @@ source ~/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# dotfiles repo
+# Dotfiles repo
 config() {
   local cmd="$1"
   shift || true
   case "$cmd" in
     sync)
-      [[ -z "$1" ]] && { echo "Usage: config sync \"message\""; return 1; }
-      config add -u && config commit -m "$1" && config push
+      if [[ -z "$1" ]]; then
+        echo "Usage: config sync \"commit message\""
+        return 1
+      fi
+      config add -u &&
+      config commit -m "$1" &&
+      config push
       ;;
     *)
       /usr/bin/git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" "$cmd" "$@"
@@ -33,14 +38,19 @@ config() {
   esac
 }
 
-# school repo
+# School repo
 school() {
   local cmd="$1"
   shift || true
   case "$cmd" in
     sync)
-      [[ -z "$1" ]] && { echo "Usage: school sync \"message\""; return 1; }
-      school add . && school commit -m "$1" && school push
+      if [[ -z "$1" ]]; then
+        echo "Usage: school sync \"commit message\""
+        return 1
+      fi
+      school add . &&
+      school commit -m "$1" &&
+      school push
       ;;
     *)
       git -C "$HOME/school" "$cmd" "$@"
