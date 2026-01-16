@@ -132,13 +132,6 @@ if command -v auto-cpufreq &> /dev/null; then
     print_success "Auto-cpufreq installed"
 fi
 
-# Apply GTK settings
-if command -v nwg-look &> /dev/null; then
-    print_info "Applying GTK settings..."
-    nwg-look -a
-    print_success "GTK settings applied"
-fi
-
 echo ""
 echo "========================================="
 echo -e "${GREEN}Installation Complete!${NC}"
