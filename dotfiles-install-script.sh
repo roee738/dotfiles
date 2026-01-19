@@ -132,6 +132,12 @@ if command -v auto-cpufreq &> /dev/null; then
     print_success "Auto-cpufreq installed"
 fi
 
+# Configure logind
+print_info "Configuring logind..."
+sudo sed -i 's/^#HandleSuspendKey=suspend/HandleSuspendKey=ignore/' /etc/systemd/logind.conf
+sudo sed -i 's/^#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
+print_success "Logind configured"
+
 echo ""
 echo "========================================="
 echo -e "${GREEN}Installation Complete!${NC}"

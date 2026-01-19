@@ -133,7 +133,7 @@ sudo nvim /etc/systemd/logind.conf
 
 # Uncomment and amend these lines:
 HandleSuspendKey=ignore
-HandleSuspendKeyLongPress=ignore
+HandlePowerKey=ignore
 
 # Reboot system
 ```
