@@ -1,35 +1,116 @@
-```bash
-## Zen Browser Settings
+# Zen Browser Settings
+
+## Initial Setup
+
 1. Install Bitwarden and uBlock Origin extensions
 2. Login to Bitwarden extension and set lock to 30 min timeout
-3. Go to uBlock preferences and check EasyList cookie notices and EasyList annoyances
-4. In Zen settings, uncheck Open previous windows and tabs
-5. Uncheck ask before quitting
-6. Check Delete files downloaded in private browsing
-7. Uncheck enable picture-in-picture
-8. Uncheck enable glance
-9. In Search, check Show search suggestions
-10. Uncheck suggest bookmarks, clipboard, open tabs, and search engines to use
-11. In privacy and security, uncheck ask to save passwords
-12. Uncheck save and autofill payment
-13. Uncheck save addresses
-14. In Zen Mods, install Ghost Tabs, Private Mode Highlighting, and Remove Tab X
-15. Retitle Space to Me, change icon to water droplet, set profile to personal
-16. Edit theme to orange-y gradient
-17. Create a new space called School with graduation cap icon
-18. Edit theme to blue-ish gradient
-19. Go back to Zen Settings and access Container Tabs Settings
-20. Remove Banking and Shopping and rename Work to School
-21. Change color of School container to blue and icon to glasses
-22. Change color of Personal to orange
-23. For Me container:
-    - gmail (bouskilare) essential tab
-    - claude essential
-    - chatgpt essential
-    - pinned: gmail (roee738), google maps, td, koodo, telus, bc hydro, google calendar, weather network, youtube
-24. For School container:
-    - gmail (bouskilare) essential
-    - chatgpt essential
-    - pinned: uvic, brightspace, outlook, github
-25. Go to about:config, and set zen.view.experimental-no-window-controls to true
+3. Go to uBlock preferences and check:
+   - EasyList cookie notices
+   - EasyList annoyances
+
+## General Settings
+
+4. Uncheck "Open previous windows and tabs"
+5. Uncheck "Ask before quitting"
+6. Check "Delete files downloaded in private browsing"
+7. Uncheck "Enable picture-in-picture"
+8. Uncheck "Enable glance"
+
+## Search Settings
+
+9. Check "Show search suggestions"
+10. Uncheck "Suggest bookmarks, clipboard, open tabs, and search engines to use"
+
+## Privacy and Security
+
+11. Uncheck "Ask to save passwords"
+12. Uncheck "Save and autofill payment"
+13. Uncheck "Save addresses"
+
+## Zen Mods
+
+14. Install the following mods:
+    - Ghost Tabs
+    - Private Mode Highlighting
+    - Remove Tab X
+
+## Spaces Setup
+
+### Base Space
+15. Retitle Space to "Base"
+16. Change icon to water droplet
+17. Set profile to Personal
+18. Edit theme to orange-y gradient
+
+### School Space
+19. Create a new space called "School"
+20. Change icon to graduation cap
+21. Edit theme to blue-ish gradient
+
+## Container Tabs
+
+22. Access Container Tabs Settings
+23. Remove "Banking" and "Shopping" containers
+24. Rename "Work" to "School"
+25. Change "School" container color to blue and icon to glasses
+26. Change "Personal" container color to orange
+
+## Tab Configuration
+
+### Base Container
+- **Essential tabs:**
+  - Gmail (bouskilare)
+  - Claude
+  - ChatGPT
+- **Pinned tabs:**
+  - Gmail (roee738)
+  - Google Maps
+  - TD
+  - Koodo
+  - Telus
+  - BC Hydro
+  - Google Calendar
+  - Weather Network
+  - YouTube
+
+### School Container
+- **Essential tabs:**
+  - Gmail (bouskilare)
+  - ChatGPT
+- **Pinned tabs:**
+  - UVic
+  - Brightspace
+  - Outlook
+  - GitHub
+
+## Disable top bar expand on hover
+
+27. Go to `about:config` and set `zen.view.experimental-no-window-controls` to `true`
+
+## macOS Only: Hide Titlebar Buttons
+
+### 1. Enable Custom CSS
+1. Type `about:config` in the address bar
+2. Click "Accept the Risk and Continue"
+3. Search for `toolkit.legacyUserProfileCustomizations.stylesheets`
+4. Toggle it to `true`
+
+### 2. Locate Profile Folder
+1. Type `about:support` in the address bar
+2. Find "Profile Folder" or "Profile Directory"
+3. Click "Open Folder" or "Show in Finder"
+
+### 3. Create Chrome Folder
+1. In your profile folder, create a folder named `chrome` (lowercase)
+2. If it already exists, open it
+
+### 4. Create userChrome.css
+Inside the `chrome` folder, create `userChrome.css` and add:
+```css
+/* Hide macOS titlebar buttons in Zen Browser */
+.titlebar-buttonbox-container {
+  display: none !important;
+}
 ```
+
+### 5. Restart Zen Browser
