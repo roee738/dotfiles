@@ -35,6 +35,7 @@
     - Private Mode Highlighting
     - Remove Tab X
     - Zen Context Menu
+      - Within Zen Context Menu settings, check everything except *Restore back all icons, Hide all icons, Apple zen workspace gradient, Apply zen accent color, Hide search web, Hide search in private window, Hide translate, and Hide pin tab.* In macOS, also uncheck the very top selection in order to enable the mod.
 
 ## Spaces Setup
 
@@ -88,6 +89,7 @@
 ## Disable top bar expand on hover
 
 27. Go to `about:config` and set `zen.view.experimental-no-window-controls` to `true`
+28. Set `zen.theme.content-element-separation = 0`
 
 ## macOS Only: Hide Titlebar Buttons
 
