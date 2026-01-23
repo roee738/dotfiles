@@ -43,7 +43,7 @@
 15. Retitle Space to "Base"
 16. Change icon to water droplet
 17. Set profile to Personal
-18. Edit theme to orange-y gradient
+18. Edit theme to black gradient with halfway dialed granular effect
 
 ### School Space
 19. Create a new space called "School"
@@ -65,16 +65,17 @@
   - Gmail (bouskilare)
   - Claude
   - ChatGPT
+  - YouTube
+  - Codeberg
+  - Google Maps
 - **Pinned tabs:**
   - Gmail (roee738)
-  - Google Maps
   - TD
   - Koodo
   - Telus
   - BC Hydro
   - Google Calendar
   - Weather Network
-  - YouTube
 
 ### School Container
 - **Essential tabs:**
