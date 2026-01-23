@@ -30,9 +30,11 @@
 ## Zen Mods
 
 14. Install the following mods:
+    - Disable Rounded Corners
     - Ghost Tabs
     - Private Mode Highlighting
     - Remove Tab X
+    - Zen Context Menu
 
 ## Spaces Setup
 
