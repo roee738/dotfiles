@@ -72,10 +72,47 @@ sudo pacman -S --needed --noconfirm zsh
 chsh -s $(which zsh)
 print_success "Zsh set as default shell (requires logout/reboot to take effect)"
 
+# Setup SSH key for GitHub
+print_info "Checking for SSH key..."
+if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
+    print_info "No SSH key found. Setting up SSH key for GitHub..."
+    read -p "Enter your email for SSH key: " ssh_email
+    ssh-keygen -t ed25519 -C "$ssh_email" -f "$HOME/.ssh/id_ed25519" -N ""
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_ed25519
+    
+    echo ""
+    echo "========================================="
+    echo "SSH KEY SETUP REQUIRED"
+    echo "========================================="
+    echo "Your public SSH key:"
+    echo ""
+    cat ~/.ssh/id_ed25519.pub
+    echo ""
+    echo "Please:"
+    echo "1. Copy the key above"
+    echo "2. Go to https://github.com/settings/keys"
+    echo "3. Click 'New SSH key'"
+    echo "4. Paste your key and save"
+    echo ""
+    read -p "Press Enter once you've added the key to GitHub..."
+    
+    # Test SSH connection
+    print_info "Testing GitHub SSH connection..."
+    if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+        print_success "SSH connection to GitHub successful"
+    else
+        print_error "SSH connection failed. Please check your SSH key setup."
+        exit 1
+    fi
+else
+    print_success "SSH key already exists"
+fi
+
 # Clone dotfiles repo
 if [ ! -d "$HOME/.dotfiles" ]; then
     print_info "Cloning dotfiles repository..."
-    git clone --bare https://codeberg.org/roee738/dotfiles.git $HOME/.dotfiles
+    git clone --bare git@github.com:roee738/dotfiles.git $HOME/.dotfiles
     print_success "Dotfiles cloned"
 else
     print_success "Dotfiles already cloned"
@@ -88,10 +125,11 @@ print_info "Restoring dotfiles..."
 print_success "Dotfiles restored"
 
 # Configure git credentials
-print_info "Configuring git credentials..."
-read -p "Enter your git username: " git_username
-read -p "Enter your git email: " git_email
-git config --global credential.helper store
+print_info "Configuring git user..."
+read -p "Enter your git username [roee]: " git_username
+git_username=${git_username:-roee}
+read -p "Enter your git email [roee738@gmail.com]: " git_email
+git_email=${git_email:-roee738@gmail.com}
 git config --global user.name "$git_username"
 git config --global user.email "$git_email"
 print_success "Git configured"
