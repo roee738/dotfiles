@@ -87,7 +87,7 @@
   - Outlook
   - GitHub
 
-## Disable top bar expand on hover
+## Additional settings
 
 27. Go to `about:config` and set `zen.view.experimental-no-window-controls` to `true`
 28. Set `zen.theme.content-element-separation = 0`
