@@ -77,6 +77,11 @@ print_info "Checking for SSH key..."
 if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
     print_info "No SSH key found. Setting up SSH key for GitHub..."
     read -p "Enter your email for SSH key: " ssh_email
+    while [[ -z "$ssh_email" ]]; do
+        echo "Email cannot be empty."
+        read -p "Enter your email for SSH key: " ssh_email
+    done
+    
     ssh-keygen -t ed25519 -C "$ssh_email" -f "$HOME/.ssh/id_ed25519" -N ""
     eval "$(ssh-agent -s)"
     ssh-add ~/.ssh/id_ed25519
@@ -102,8 +107,7 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
     if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
         print_success "SSH connection to GitHub successful"
     else
-        print_error "SSH connection failed. Please check your SSH key setup."
-        exit 1
+        echo "Warning: Could not verify SSH connection. Continuing anyway..."
     fi
 else
     print_success "SSH key already exists"
@@ -131,13 +135,11 @@ while [[ -z "$git_username" ]]; do
     echo "Username cannot be empty."
     read -p "Enter your git username: " git_username
 done
-
 read -p "Enter your git email: " git_email
 while [[ -z "$git_email" ]]; do
     echo "Email cannot be empty."
     read -p "Enter your git email: " git_email
 done
-
 git config --global user.name "$git_username"
 git config --global user.email "$git_email"
 print_success "Git configured with username: $git_username and email: $git_email"
