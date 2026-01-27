@@ -9,6 +9,8 @@ curl -o install.sh https://raw.githubusercontent.com/roee738/dotfiles/main/dotfi
 chmod +x install.sh
 ./install.sh
 ```
+The script will guide you through SSH key setup for GitHub access.
+
 After installation completes, log out and log back in (or reboot) for all changes to take effect.
 
 ## Manual Setup
@@ -54,6 +56,30 @@ chsh -s $(which zsh)
 
 ## Setup Git Sync
 
+### Setup SSH Key for GitHub
+```bash
+# Generate SSH key
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+# Start SSH agent and add key
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+
+# Display your public key
+cat ~/.ssh/id_ed25519.pub
+```
+
+Copy the output and add it to GitHub:
+1. Go to https://github.com/settings/keys
+2. Click "New SSH key"
+3. Paste your public key
+4. Click "Add SSH key"
+
+Test the connection:
+```bash
+ssh -T git@github.com
+```
+
 ### Clone the Bare Repository
 ```bash
 git clone --bare git@github.com:roee738/dotfiles.git $HOME/.dotfiles
@@ -65,12 +91,7 @@ git clone --bare git@github.com:roee738/dotfiles.git $HOME/.dotfiles
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
 ```
 
-### Set Git Upstream
-```bash
-/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME branch --set-upstream-to=origin/main main
-```
-
-### Configure Git Credentials
+### Configure Git User
 ```bash
 git config --global user.name "roee"
 git config --global user.email "roee738@gmail.com"
