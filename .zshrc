@@ -37,23 +37,3 @@ config() {
       ;;
   esac
 }
-
-# School repo
-school() {
-  local cmd="$1"
-  shift || true
-  case "$cmd" in
-    sync)
-      if [[ -z "$1" ]]; then
-        echo "Usage: school sync \"commit message\""
-        return 1
-      fi
-      school add . &&
-      school commit -m "$1" &&
-      school push
-      ;;
-    *)
-      git -C "$HOME/school" "$cmd" "$@"
-      ;;
-  esac
-}
