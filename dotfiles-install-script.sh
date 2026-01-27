@@ -126,13 +126,21 @@ print_success "Dotfiles restored"
 
 # Configure git credentials
 print_info "Configuring git user..."
-read -p "Enter your git username [roee]: " git_username
-git_username=${git_username:-roee}
-read -p "Enter your git email [roee738@gmail.com]: " git_email
-git_email=${git_email:-roee738@gmail.com}
+read -p "Enter your git username: " git_username
+while [[ -z "$git_username" ]]; do
+    echo "Username cannot be empty."
+    read -p "Enter your git username: " git_username
+done
+
+read -p "Enter your git email: " git_email
+while [[ -z "$git_email" ]]; do
+    echo "Email cannot be empty."
+    read -p "Enter your git email: " git_email
+done
+
 git config --global user.name "$git_username"
 git config --global user.email "$git_email"
-print_success "Git configured"
+print_success "Git configured with username: $git_username and email: $git_email"
 
 # Download all packages
 if [ -f ~/.config/pkglist.txt ]; then
