@@ -30,9 +30,12 @@
 ## Zen Mods
 
 14. Install the following mods:
+    - Disable Rounded Corners
     - Ghost Tabs
     - Private Mode Highlighting
     - Remove Tab X
+    - Zen Context Menu
+      - Within Zen Context Menu settings, check everything except *Restore back all icons, Hide all icons, Apple zen workspace gradient, Apply zen accent color, Hide search web, Hide search in private window, Hide translate, and Hide pin tab.* In macOS, also uncheck the very top selection in order to enable the mod.
 
 ## Spaces Setup
 
@@ -40,7 +43,7 @@
 15. Retitle Space to "Base"
 16. Change icon to water droplet
 17. Set profile to Personal
-18. Edit theme to orange-y gradient
+18. Edit theme to black gradient with halfway dialed granular effect
 
 ### School Space
 19. Create a new space called "School"
@@ -62,16 +65,17 @@
   - Gmail (bouskilare)
   - Claude
   - ChatGPT
+  - YouTube
+  - Codeberg
+  - Google Maps
 - **Pinned tabs:**
   - Gmail (roee738)
-  - Google Maps
   - TD
   - Koodo
   - Telus
   - BC Hydro
   - Google Calendar
   - Weather Network
-  - YouTube
 
 ### School Container
 - **Essential tabs:**
@@ -83,9 +87,10 @@
   - Outlook
   - GitHub
 
-## Disable top bar expand on hover
+## Additional settings
 
 27. Go to `about:config` and set `zen.view.experimental-no-window-controls` to `true`
+28. Set `zen.theme.content-element-separation = 0`
 
 ## macOS Only: Hide Titlebar Buttons
 
