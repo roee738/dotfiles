@@ -66,7 +66,7 @@
   - Claude
   - ChatGPT
   - YouTube
-  - Codeberg
+  - GitHub
   - Google Maps
 - **Pinned tabs:**
   - Gmail (roee738)
