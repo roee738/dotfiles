@@ -30,7 +30,6 @@
 ## Zen Mods
 
 14. Install the following mods:
-    - Disable Rounded Corners
     - Ghost Tabs
     - Private Mode Highlighting
     - Remove Tab X
@@ -68,13 +67,13 @@
   - YouTube
   - GitHub
   - Google Maps
+  - TD
+  - Google Calendar
+  - Koodo
 - **Pinned tabs:**
   - Gmail (roee738)
-  - TD
-  - Koodo
   - Telus
   - BC Hydro
-  - Google Calendar
   - Weather Network
 
 ### School Container
