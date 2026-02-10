@@ -70,10 +70,11 @@
   - TD
   - Google Calendar
   - Koodo
-- **Pinned tabs:**
-  - Gmail (roee738)
+  - Wealthsimple
   - Telus
   - BC Hydro
+- **Pinned tabs:**
+  - Gmail (roee738)
   - Weather Network
 
 ### School Container
