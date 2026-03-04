@@ -35,7 +35,7 @@ fi
 # Update mirrors
 print_info "Updating package mirrors..."
 sudo pacman -S --needed --noconfirm reflector
-sudo reflector --protocol https --latest 10 --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector --country US,Canada --age 12 --protocol https --sort rate --fastest 5 --save /etc/pacman.d/mirrorlist
 sudo pacman -Syu --noconfirm
 print_success "Mirrors updated"
 
