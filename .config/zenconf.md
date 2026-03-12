@@ -72,10 +72,11 @@
   - Koodo
   - Wealthsimple
   - Telus
-  - BC Hydro
+  - RBC
 - **Pinned tabs:**
   - Gmail (roee738)
   - Weather Network
+  - BC Hydro
 
 ### School Container
 - **Essential tabs:**
