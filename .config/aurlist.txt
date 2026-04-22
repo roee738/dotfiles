@@ -1,5 +1,4 @@
 auto-cpufreq
-bibata-cursor-theme-bin
 catppuccin-gtk-theme-mocha
 helium-browser-bin
 rofi-bluetooth-git
