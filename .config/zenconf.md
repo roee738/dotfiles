@@ -10,52 +10,60 @@
 
 ## General Settings
 
-4. Uncheck "Open previous windows and tabs"
-5. Uncheck "Ask before quitting"
-6. Check "Delete files downloaded in private browsing"
-7. Uncheck "Enable picture-in-picture"
-8. Uncheck "Enable glance"
+1. Uncheck "Open previous windows and tabs"
+2. Check "Ctrl+Tab cycles"
+3. Uncheck "Ask before quitting"
+4. Check "Delete files downloaded in private browsing"
+5. Uncheck "Enable picture-in-picture"
 
-## Search Settings
+## Look and Feel
+1. Uncheck "Show New Tab Button"
+2. Uncheck "Enable glance"
+3. Zen URL Bar "Floating only when typing"
 
-9. Check "Show search suggestions"
-10. Uncheck "Suggest bookmarks, clipboard, open tabs, and search engines to use"
-
-## Privacy and Security
-
-11. Uncheck "Ask to save passwords"
-12. Uncheck "Save and autofill payment"
-13. Uncheck "Save addresses"
+## Tab Management
+1. Check "Restore pinned tabs to their original..."
 
 ## Zen Mods
 
-14. Install the following mods:
+1. Install the following mods:
     - Ghost Tabs
     - Private Mode Highlighting
     - Remove Tab X
     - Zen Context Menu
       - Within Zen Context Menu settings, check everything except *Restore back all icons, Hide all icons, Apple zen workspace gradient, Apply zen accent color, Hide search web, Hide search in private window, Hide translate, and Hide pin tab.* In macOS, also uncheck the very top selection in order to enable the mod.
 
+## Search
+
+1. Check "Show search suggestions"
+2. Uncheck "Suggest bookmarks, clipboard, open tabs, and search engines to use"
+
+## Privacy & Security
+
+1. Uncheck "Ask to save passwords"
+2. Uncheck "Save and autofill payment"
+3. Uncheck "Save addresses"
+
 ## Spaces Setup
 
 ### Base Space
-15. Retitle Space to "Base"
-16. Change icon to water droplet
-17. Set profile to Personal
-18. Edit theme to black gradient with halfway dialed granular effect
+1. Retitle Space to "Base"
+2. Change icon to water droplet
+3. Set profile to Personal
+4. Edit theme to black gradient with halfway dialed granular effect
 
 ### School Space
-19. Create a new space called "School"
-20. Change icon to graduation cap
-21. Edit theme to blue-ish gradient
+1. Create a new space called "School"
+2. Change icon to graduation cap
+3. Edit theme to blue-ish gradient
 
 ## Container Tabs
 
-22. Access Container Tabs Settings
-23. Remove "Banking" and "Shopping" containers
-24. Rename "Work" to "School"
-25. Change "School" container color to blue and icon to glasses
-26. Change "Personal" container color to orange
+1. Access Container Tabs Settings
+2. Remove "Banking" and "Shopping" containers
+3. Rename "Work" to "School"
+4. Change "School" container color to blue and icon to glasses
+5. Change "Personal" container color to orange
 
 ## Tab Configuration
 
@@ -90,8 +98,8 @@
 
 ## Additional settings
 
-27. Go to `about:config` and set `zen.view.experimental-no-window-controls` to `true`
-28. Set `zen.theme.content-element-separation = 0`
+1. Go to `about:config` and set `zen.view.experimental-no-window-controls` to `true`
+2. Set `zen.theme.content-element-separation = 0`
 
 ## macOS Only: Hide Titlebar Buttons
 
