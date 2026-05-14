@@ -120,9 +120,15 @@ source ~/.zshrc
 yay -S --needed - < ~/.config/aurlist.txt
 ```
 
-### Start auto-cpufreq
+### Start tlp
 ```bash
-sudo auto-cpufreq --install
+sudo systemctl enable --now tlp.service
+```
+
+### Modify tlp config
+```bash
+sudo sed -i 's/^#\?TLP_AUTO_SWITCH=.*/TLP_AUTO_SWITCH=0/' /etc/tlp.conf
+sudo sed -i 's/^#\?TLP_PROFILE_DEFAULT=.*/TLP_PROFILE_DEFAULT=BAL/' /etc/tlp.conf
 ```
 
 ### Disable sleep key

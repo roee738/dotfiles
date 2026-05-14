@@ -173,18 +173,22 @@ mkdir -p ~/.config/zsh/plugins
     git clone https://github.com/zsh-users/zsh-history-substring-search ~/.config/zsh/plugins/zsh-history-substring-search
 print_success "Zsh plugins installed"
 
-# Start auto-cpufreq
-if command -v auto-cpufreq &> /dev/null; then
-    print_info "Installing auto-cpufreq service..."
-    sudo auto-cpufreq --install
-    print_success "Auto-cpufreq installed"
-fi
+# Start tlp
+print_info "Enabling tlp service..."
+sudo systemctl enable --now tlp.service
+print_success "tlp enabled"
+
+# Edit tlp.conf
+print_info "Configuring tlp..."
+sudo sed -i 's/^#\?TLP_AUTO_SWITCH=.*/TLP_AUTO_SWITCH=0/' /etc/tlp.conf
+sudo sed -i 's/^#\?TLP_PROFILE_DEFAULT=.*/TLP_PROFILE_DEFAULT=BAL/' /etc/tlp.conf
+print_success "tlp configured"
 
 # Configure logind
 print_info "Configuring logind..."
 sudo sed -i 's/^#HandleSuspendKey=suspend/HandleSuspendKey=ignore/' /etc/systemd/logind.conf
 sudo sed -i 's/^#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
-print_success "Logind configured"
+print_success "logind configured"
 
 echo ""
 echo "========================================="
