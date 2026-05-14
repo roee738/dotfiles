@@ -125,6 +125,11 @@ yay -S --needed - < ~/.config/aurlist.txt
 sudo systemctl enable --now tlp.service
 ```
 ## Laptop specific settings
+### Install laptop specific packages
+```bash
+sudo pacman -S --needed acpi brightnessctl tlp
+```
+
 ### Modify tlp config
 ```bash
 sudo sed -i 's/^#\?TLP_AUTO_SWITCH=.*/TLP_AUTO_SWITCH=0/' /etc/tlp.conf

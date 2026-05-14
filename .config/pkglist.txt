@@ -1,9 +1,7 @@
-acpi
 amd-ucode
 base-devel
 blueman
 breeze-cursors
-brightnessctl
 cliphist
 firefox
 git
@@ -32,7 +30,6 @@ python-pip
 reflector
 rofi
 thunar
-tlp
 ttc-iosevka
 ttc-iosevka-aile
 ttf-dejavu-nerd

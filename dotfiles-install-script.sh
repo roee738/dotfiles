@@ -176,6 +176,11 @@ print_success "Zsh plugins installed"
 print_info "Detecting system type..."
 if ls /sys/class/power_supply/ | grep -q "^BAT"; then
     echo "Laptop detected, applying power management settings..."
+    
+    # Install laptop specific packages
+    print_info "Installing laptop specific packages..."
+    sudo pacman -S --needed --noconfirm acpi brightnessctl tlp
+    print_success "Packages installed"
 
     # Start tlp
     print_info "Enabling tlp service..."
