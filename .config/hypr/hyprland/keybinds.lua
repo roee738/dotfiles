@@ -13,7 +13,6 @@ hl.bind("SUPER + C",         hl.dsp.exec_cmd("obsidian"))
 hl.bind("SUPER + S",         hl.dsp.exec_cmd("code"))
 hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd("killall waybar && waybar"))
 hl.bind("SUPER + SHIFT + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu | cliphist decode | wl-copy"))
-hl.bind("SUPER + SHIFT + E", hl.dsp.exit())
 hl.bind("SUPER + V",         hl.dsp.window.float({ action = "toggle" }))
 hl.bind("SUPER + P",         hl.dsp.window.pseudo())
 hl.bind("SUPER + J",         hl.dsp.layout("togglesplit"))
@@ -38,10 +37,6 @@ for i = 1, 10 do
     hl.bind("SUPER + " .. key,         hl.dsp.focus({ workspace = i }))
     hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
-
--- Special workspace (scratchpad)
-hl.bind("SUPER + minus",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind("SUPER + SHIFT + minus", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Move/resize windows with mouse
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(),   { mouse = true })

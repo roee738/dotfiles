@@ -7,6 +7,6 @@ hl.env("GDK_SCALE",        "1.25")
 -- XWayland
 hl.config({
     xwayland = {
-        force_zero_scaling = true,
-    },
+        force_zero_scaling = true
+    }
 })
