@@ -1,7 +1,9 @@
 auto-cpufreq
 catppuccin-gtk-theme-mocha
 helium-browser-bin
+localsend-bin
 rofi-bluetooth-git
+rustdesk-bin
 visual-studio-code-bin
 yay
 yay-debug

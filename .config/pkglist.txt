@@ -1,12 +1,12 @@
 acpi
 amd-ucode
-auto-cpufreq
+base
+base-devel
 blueman
 bluez
 bluez-utils
 breeze-cursors
 brightnessctl
-catppuccin-gtk-theme-mocha
 cliphist
 dolphin
 dunst
@@ -16,7 +16,6 @@ git
 go
 grim
 gst-plugin-pipewire
-helium-browser-bin
 htop
 hypridle
 hyprland
@@ -36,12 +35,13 @@ man-db
 mpv
 nano
 neovim
-networkmanager
 network-manager-applet
+networkmanager
 networkmanager-dmenu
 noto-fonts
 noto-fonts-emoji
 nwg-look
+pacman-contrib
 papirus-icon-theme
 pavucontrol
 pipewire
@@ -54,7 +54,6 @@ qt5-wayland
 qt6-wayland
 reflector
 rofi
-rofi-bluetooth-git
 sddm
 slurp
 smartmontools
@@ -69,7 +68,6 @@ unrar
 unzip
 uwsm
 vim
-visual-studio-code-bin
 vulkan-radeon
 waybar
 wget
@@ -84,8 +82,5 @@ xf86-video-amdgpu
 xf86-video-ati
 xorg-server
 xorg-xinit
-yay
-yay-debug
-zen-browser-bin
 zram-generator
 zsh
