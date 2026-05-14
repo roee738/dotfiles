@@ -60,6 +60,7 @@ smartmontools
 sof-firmware
 sudo
 thunar
+tlp
 ttc-iosevka
 ttc-iosevka-aile
 ttf-dejavu-nerd

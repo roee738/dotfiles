@@ -1,4 +1,3 @@
-auto-cpufreq
 catppuccin-gtk-theme-mocha
 helium-browser-bin
 localsend-bin
