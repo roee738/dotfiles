@@ -173,22 +173,27 @@ mkdir -p ~/.config/zsh/plugins
     git clone https://github.com/zsh-users/zsh-history-substring-search ~/.config/zsh/plugins/zsh-history-substring-search
 print_success "Zsh plugins installed"
 
-# Start tlp
-print_info "Enabling tlp service..."
-sudo systemctl enable --now tlp.service
-print_success "tlp enabled"
+print_info "Detecting system type..."
+if ls /sys/class/power_supply/ | grep -q "^BAT"; then
+    echo "Laptop detected, applying power management settings..."
 
-# Edit tlp.conf
-print_info "Configuring tlp..."
-sudo sed -i 's/^#\?TLP_AUTO_SWITCH=.*/TLP_AUTO_SWITCH=0/' /etc/tlp.conf
-sudo sed -i 's/^#\?TLP_PROFILE_DEFAULT=.*/TLP_PROFILE_DEFAULT=BAL/' /etc/tlp.conf
-print_success "tlp configured"
+    # Start tlp
+    print_info "Enabling tlp service..."
+    sudo systemctl enable --now tlp.service
+    print_success "tlp enabled"
 
-# Configure logind
-print_info "Configuring logind..."
-sudo sed -i 's/^#HandleSuspendKey=suspend/HandleSuspendKey=ignore/' /etc/systemd/logind.conf
-sudo sed -i 's/^#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
-print_success "logind configured"
+    # Edit tlp.conf
+    print_info "Configuring tlp..."
+    sudo sed -i 's/^#\?TLP_AUTO_SWITCH=.*/TLP_AUTO_SWITCH=0/' /etc/tlp.conf
+    sudo sed -i 's/^#\?TLP_PROFILE_DEFAULT=.*/TLP_PROFILE_DEFAULT=BAL/' /etc/tlp.conf
+    print_success "tlp configured"
+
+    # Configure logind
+    print_info "Configuring logind..."
+    sudo sed -i 's/^#HandleSuspendKey=suspend/HandleSuspendKey=ignore/' /etc/systemd/logind.conf
+    sudo sed -i 's/^#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
+    print_success "logind configured"
+fi
 
 echo ""
 echo "========================================="

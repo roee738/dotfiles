@@ -124,7 +124,7 @@ yay -S --needed - < ~/.config/aurlist.txt
 ```bash
 sudo systemctl enable --now tlp.service
 ```
-
+## Laptop specific settings
 ### Modify tlp config
 ```bash
 sudo sed -i 's/^#\?TLP_AUTO_SWITCH=.*/TLP_AUTO_SWITCH=0/' /etc/tlp.conf
