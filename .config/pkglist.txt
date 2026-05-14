@@ -24,6 +24,7 @@ pacman-contrib
 papirus-icon-theme
 pavucontrol
 pipewire
+poppler-glib
 python-pip
 reflector
 rofi
