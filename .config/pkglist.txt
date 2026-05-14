@@ -1,11 +1,8 @@
 amd-ucode
-base-devel
 blueman
 breeze-cursors
 cliphist
 firefox
-git
-go
 hypridle
 hyprlock
 hyprpaper
@@ -39,4 +36,3 @@ unzip
 waybar
 wireless_tools
 wl-clipboard
-zsh
