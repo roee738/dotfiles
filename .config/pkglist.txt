@@ -3,6 +3,7 @@ blueman
 breeze-cursors
 cliphist
 firefox
+gvfs
 hypridle
 hyprlock
 hyprpaper
