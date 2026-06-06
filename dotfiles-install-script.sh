@@ -179,19 +179,8 @@ if ls /sys/class/power_supply/ | grep -q "^BAT"; then
     
     # Install laptop specific packages
     print_info "Installing laptop specific packages..."
-    sudo pacman -S --needed --noconfirm acpi brightnessctl tlp
+    sudo pacman -S --needed --noconfirm acpi brightnessctl
     print_success "Packages installed"
-
-    # Start tlp
-    print_info "Enabling tlp service..."
-    sudo systemctl enable --now tlp.service
-    print_success "tlp enabled"
-
-    # Edit tlp.conf
-    print_info "Configuring tlp..."
-    sudo sed -i 's/^#\?TLP_AUTO_SWITCH=.*/TLP_AUTO_SWITCH=0/' /etc/tlp.conf
-    sudo sed -i 's/^#\?TLP_PROFILE_DEFAULT=.*/TLP_PROFILE_DEFAULT=BAL/' /etc/tlp.conf
-    print_success "tlp configured"
 
     # Configure logind
     print_info "Configuring logind..."

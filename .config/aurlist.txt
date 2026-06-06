@@ -4,6 +4,4 @@ localsend-bin
 rofi-bluetooth-git
 rustdesk-bin
 visual-studio-code-bin
-yay
-yay-debug
 zen-browser-bin

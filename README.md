@@ -120,20 +120,10 @@ source ~/.zshrc
 yay -S --needed - < ~/.config/aurlist.txt
 ```
 
-### Start tlp
-```bash
-sudo systemctl enable --now tlp.service
-```
 ## Laptop specific settings
 ### Install laptop specific packages
 ```bash
-sudo pacman -S --needed acpi brightnessctl tlp
-```
-
-### Modify tlp config
-```bash
-sudo sed -i 's/^#\?TLP_AUTO_SWITCH=.*/TLP_AUTO_SWITCH=0/' /etc/tlp.conf
-sudo sed -i 's/^#\?TLP_PROFILE_DEFAULT=.*/TLP_PROFILE_DEFAULT=BAL/' /etc/tlp.conf
+sudo pacman -S --needed acpi brightnessctl
 ```
 
 ### Disable sleep key
