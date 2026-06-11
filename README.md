@@ -97,7 +97,7 @@ git config --global user.name "roee"
 git config --global user.email "roee738@gmail.com"
 ```
 
-### Download All Packages
+### Install Arch Packages
 ```bash
 sudo pacman -S --needed - < ~/.config/pkglist.txt
 ```
@@ -123,7 +123,12 @@ yay -S --needed - < ~/.config/aurlist.txt
 ## Laptop specific settings
 ### Install laptop specific packages
 ```bash
-sudo pacman -S --needed acpi brightnessctl
+sudo pacman -S --needed acpi auto-cpufreq brightnessctl
+```
+
+### Start auto-cpufreq
+```bash
+sudo auto-cpufreq --install
 ```
 
 ### Disable sleep key

@@ -179,8 +179,15 @@ if ls /sys/class/power_supply/ | grep -q "^BAT"; then
     
     # Install laptop specific packages
     print_info "Installing laptop specific packages..."
-    sudo pacman -S --needed --noconfirm acpi brightnessctl
+    sudo pacman -S --needed --noconfirm acpi auto-cpufreq brightnessctl
     print_success "Packages installed"
+    
+    # Start auto-cpufreq
+    if command -v auto-cpufreq &> /dev/null; then
+        print_info "Installing auto-cpufreq service..."
+        sudo auto-cpufreq --install
+        print_success "Auto-cpufreq installed"
+    fi
 
     # Configure logind
     print_info "Configuring logind..."
