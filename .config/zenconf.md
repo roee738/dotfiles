@@ -69,7 +69,7 @@
 
 ### Base Container
 - **Essential tabs:**
-  - Gmail (bouskilare)
+  - Gmail (roee738)
   - Claude
   - ChatGPT
   - YouTube
@@ -82,19 +82,19 @@
   - Telus
   - RBC
 - **Pinned tabs:**
-  - Gmail (roee738)
-  - Weather Network
+  - Gmail bouskilare
+  - Weather
   - BC Hydro
 
 ### School Container
 - **Essential tabs:**
   - Gmail (bouskilare)
+  - Claude
   - ChatGPT
-- **Pinned tabs:**
+  - GitHub
   - UVic
   - Brightspace
   - Outlook
-  - GitHub
 
 ## Additional settings
 
