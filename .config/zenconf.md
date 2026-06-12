@@ -69,7 +69,7 @@
 
 ### Base Container
 - **Essential tabs:**
-  - Gmail (roee738)
+  - Gmail roee738
   - Claude
   - ChatGPT
   - YouTube
@@ -80,7 +80,7 @@
   - Koodo
   - Wealthsimple
   - Telus
-  - Gmail bouskilare
+  - Gmail bouskilare (change icon to generic mail)
 - **Pinned tabs:**
   - Weather
   - BC Hydro
