@@ -80,9 +80,8 @@
   - Koodo
   - Wealthsimple
   - Telus
-  - RBC
-- **Pinned tabs:**
   - Gmail bouskilare
+- **Pinned tabs:**
   - Weather
   - BC Hydro
 
