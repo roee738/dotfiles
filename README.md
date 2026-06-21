@@ -123,7 +123,8 @@ yay -S --needed - < ~/.config/aurlist.txt
 ## Laptop specific settings
 ### Install laptop specific packages
 ```bash
-sudo pacman -S --needed acpi auto-cpufreq brightnessctl
+sudo pacman -S --needed acpi brightnessctl
+yay -S --needed auto-cpufreq
 ```
 
 ### Start auto-cpufreq
