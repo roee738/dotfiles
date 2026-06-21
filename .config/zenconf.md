@@ -11,10 +11,9 @@
 ## General Settings
 
 1. Uncheck "Open previous windows and tabs"
-2. Check "Ctrl+Tab cycles"
+2. Check "Ctrl+Tab cycles through tabs in recently used order"
 3. Uncheck "Ask before quitting"
-4. Check "Delete files downloaded in private browsing"
-5. Uncheck "Enable picture-in-picture"
+4. Check "Delete private window downloads on close"
 
 ## Look and Feel
 1. Uncheck "Show New Tab Button"
