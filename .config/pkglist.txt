@@ -9,7 +9,6 @@ hyprlock
 hyprpaper
 hyprpicker
 hyprsunset
-impression
 imv
 iwd
 jdk-openjdk
