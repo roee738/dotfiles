@@ -49,7 +49,7 @@
 1. Retitle Space to "Base"
 2. Change icon to water droplet
 3. Set profile to Personal
-4. Edit theme to black gradient with halfway dialed granular effect
+4. Edit theme to dark blue gradient with halfway dialed granular effect
 
 ### School Space
 1. Create a new space called "School"
