@@ -119,6 +119,21 @@ source ~/.zshrc
 ```bash
 yay -S --needed - < ~/.config/aurlist.txt
 ```
+## System settings
+### Disable SDDM
+```bash
+sudo systemctl disable sddm.service
+# Reboot system
+```
+### Setup dual boot
+```bash
+sudo mkdir /mnt/windows-efi
+# Mount Windows EFI partition
+sudo mount /dev/nvme0n1p1 /mnt/windows-efi
+# Copy EFI folder over
+sudo cp -r /mnt/windows-efi/EFI/Microsoft /boot/EFI/
+# Reboot system (change boot order if necessary)
+```
 
 ## Laptop specific settings
 ### Install laptop specific packages
@@ -139,22 +154,6 @@ sudo nvim /etc/systemd/logind.conf
 HandleSuspendKey=ignore
 HandlePowerKey=ignore
 # Reboot system
-```
-
-## System settings
-### Disable SDDM
-```bash
-sudo systemctl disable sddm.service
-# Reboot system
-```
-### Setup dual boot
-```bash
-sudo mkdir /mnt/windows-efi
-# Mount Windows EFI partition
-sudo mount /dev/nvme0n1p1 /mnt/windows-efi
-# Copy EFI folder over
-sudo cp -r /mnt/windows-efi/EFI/Microsoft /boot/EFI/
-# Reboot system (change boot order if necessary)
 ```
 
 ## Git usage
