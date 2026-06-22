@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e  # Exit on error
+set -eu  # Exit on error
 
 echo "========================================="
 echo "Arch Linux Dotfiles Setup"
@@ -43,19 +43,16 @@ print_success "Mirrors updated"
 print_info "Configuring pacman..."
 sudo sed -i 's/^#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
 sudo sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
-
-sudo pacman -Sy
 print_success "Pacman configured"
 
 # Install yay
 if ! command -v yay &> /dev/null; then
     print_info "Installing yay..."
     sudo pacman -S --needed --noconfirm git base-devel go
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
+    git clone https://aur.archlinux.org/yay.git /tmp/yay-build
+    cd /tmp/yay-build
     makepkg -si --noconfirm
-    cd ..
-    rm -rf yay
+    cd - > /dev/null
     print_success "Yay installed"
 else
     print_success "Yay already installed"
@@ -90,7 +87,7 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
     cat ~/.ssh/id_ed25519.pub
     echo ""
     echo "Please:"
-    echo "1. Copy the key above"
+    echo "1. Copy the key above (minus the email)"
     echo "2. Go to https://github.com/settings/keys"
     echo "3. Click 'New SSH key'"
     echo "4. Paste your key and save"
@@ -98,8 +95,9 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
     read -p "Press Enter once you've added the key to GitHub..."
     
     # Test SSH connection
-    print_info "Testing GitHub SSH connection..."
-    if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+    output=$(ssh -T git@github.com 2>&1 || true)
+
+    if echo "$output" | grep -q "successfully authenticated"; then
         print_success "SSH connection to GitHub successful"
     else
         echo "Warning: Could not verify SSH connection. Continuing anyway..."
@@ -179,9 +177,13 @@ fi
 
 # Add Windows entry to bootloader
 print_info "Detecting EFI partitions..."
-lsblk -o NAME,SIZE,FSTYPE,LABEL | grep -i fat
-print_info "Enter Windows EFI partition (e.g. nvme0n1p1, sda1):"
+lsblk -o NAME,SIZE,FSTYPE,LABEL | grep -i fat || true
+print_info "Enter Windows EFI partition (e.g. nvme0n1p1):"
 read -r efi_partition
+while [[ -z "$efi_partition" ]]; do
+    echo "Partition cannot be empty."
+    read -r efi_partition
+done
 sudo mkdir -p /mnt/windows-efi
 
 if sudo mount "/dev/$efi_partition" /mnt/windows-efi; then
@@ -210,12 +212,9 @@ if ls /sys/class/power_supply/ | grep -q "^BAT"; then
     print_success "Packages installed"
     
     # Start auto-cpufreq
-    if command -v auto-cpufreq &> /dev/null; then
-        print_info "Installing auto-cpufreq service..."
-        yay -S --needed --noconfirm auto-cpufreq
-        sudo auto-cpufreq --install
-        print_success "Auto-cpufreq installed"
-    fi
+    print_info "Starting auto-cpufreq service..."
+    sudo auto-cpufreq --install
+    print_success "Auto-cpufreq started"
 
     # Configure logind
     print_info "Configuring logind..."
