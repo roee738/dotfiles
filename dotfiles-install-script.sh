@@ -41,13 +41,8 @@ print_success "Mirrors updated"
 
 # Edit pacman.conf
 print_info "Configuring pacman..."
-sudo sed -i 's/^#Color/Color/' /etc/pacman.conf
 sudo sed -i 's/^#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
-sudo sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/' /etc/pacman.conf
-
-# Enable multilib
-sudo sed -i 's/^#\[multilib\]/[multilib]/' /etc/pacman.conf
-sudo sed -i '/\[multilib\]/,/^$/ s/^#Include/Include/' /etc/pacman.conf
+sudo sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
 sudo pacman -Sy
 print_success "Pacman configured"
@@ -173,6 +168,38 @@ mkdir -p ~/.config/zsh/plugins
     git clone https://github.com/zsh-users/zsh-history-substring-search ~/.config/zsh/plugins/zsh-history-substring-search
 print_success "Zsh plugins installed"
 
+# Disable SDDM
+if systemctl is-enabled sddm.service &> /dev/null; then
+    print_info "Disabling SDDM..."
+    sudo systemctl disable sddm.service
+    print_success "SDDM disabled"
+else
+    print_info "SDDM is not enabled, skipping..."
+fi
+
+# Add Windows entry to bootloader
+print_info "Detecting EFI partitions..."
+lsblk -o NAME,SIZE,FSTYPE,LABEL | grep -i fat
+print_info "Enter Windows EFI partition (e.g. nvme0n1p1, sda1):"
+read -r efi_partition
+sudo mkdir -p /mnt/windows-efi
+
+if sudo mount "/dev/$efi_partition" /mnt/windows-efi; then
+    print_success "Windows EFI partition mounted"
+    print_info "Copying Windows EFI files..."
+    if [ -d /mnt/windows-efi/EFI/Microsoft ]; then
+        sudo cp -r /mnt/windows-efi/EFI/Microsoft /boot/EFI/
+        print_success "Windows EFI files copied"
+    else
+        print_error "Microsoft EFI folder not found on /dev/$efi_partition"
+    fi
+    sudo umount /mnt/windows-efi
+    print_success "Windows EFI partition unmounted"
+else
+    print_error "Failed to mount /dev/$efi_partition"
+fi
+
+# Laptop detection
 print_info "Detecting system type..."
 if ls /sys/class/power_supply/ | grep -q "^BAT"; then
     echo "Laptop detected, applying power management settings..."

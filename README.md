@@ -27,16 +27,10 @@ sudo pacman -Syu
 ```bash
 sudo nvim /etc/pacman.conf
 ```
-Uncomment the following in the multilib section:
-```ini
-[multilib]
-Include = /etc/pacman.d/mirrorlist
-```
 Uncomment in Misc options section:
 ```ini
-Color
 VerbosePkgLists
-ParallelDownloads = 10
+ParallelDownloads = 5
 ```
 
 ### Install yay
@@ -93,7 +87,7 @@ git clone --bare git@github.com:roee738/dotfiles.git $HOME/.dotfiles
 
 ### Configure Git User
 ```bash
-git config --global user.name "roee"
+git config --global user.name "roee738"
 git config --global user.email "roee738@gmail.com"
 ```
 
@@ -119,6 +113,7 @@ source ~/.zshrc
 ```bash
 yay -S --needed - < ~/.config/aurlist.txt
 ```
+
 ## System settings
 ### Disable SDDM
 ```bash
@@ -127,6 +122,7 @@ sudo systemctl disable sddm.service
 ```
 ### Setup dual boot
 ```bash
+# Create Windows EFI directory
 sudo mkdir /mnt/windows-efi
 # Mount Windows EFI partition
 sudo mount /dev/nvme0n1p1 /mnt/windows-efi
