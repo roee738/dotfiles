@@ -1,13 +1,13 @@
 #!/bin/bash
 
-choices="󰜗  Hibernate\n󰌾  Lock\n󰍃  Logout\n󰜉  Reboot\n󰐥  Shutdown"
+choices="󰐥  Shutdown\n󰜉  Reboot\n󰌾  Lock\n󰍃  Logout\n󰜗  Hibernate"
 
 chosen=$(echo -e "$choices" | rofi -dmenu -i -p "Power Menu")
 
 case "$chosen" in
-    "󰜗  Hibernate") systemctl hibernate ;;
+    "󰐥  Shutdown") systemctl poweroff ;;
+    "󰜉  Reboot") systemctl reboot ;;
     "󰌾  Lock") hyprlock ;;
     "󰍃  Logout") hyprctl dispatch exit ;;
-    "󰜉  Reboot") systemctl reboot ;;
-    "󰐥  Shutdown") systemctl poweroff ;;
+    "󰜗  Hibernate") systemctl hibernate ;;
 esac
