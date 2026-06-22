@@ -141,7 +141,23 @@ HandlePowerKey=ignore
 # Reboot system
 ```
 
-## Usage
+## System settings
+### Disable SDDM
+```bash
+sudo systemctl disable sddm.service
+# Reboot system
+```
+### Setup dual boot
+```bash
+sudo mkdir /mnt/windows-efi
+# Mount Windows EFI partition
+sudo mount /dev/nvme0n1p1 /mnt/windows-efi
+# Copy EFI folder over
+sudo cp -r /mnt/windows-efi/EFI/Microsoft /boot/EFI/
+# Reboot system (change boot order if necessary)
+```
+
+## Git usage
 ```bash
 # Quick add, commit, and push
 config sync "your commit message"
