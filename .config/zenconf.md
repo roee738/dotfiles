@@ -76,7 +76,7 @@
   - Google Maps
   - TD
   - Google Calendar
-  - Koodo
+  - Fido
   - Wealthsimple
   - Telus
   - Gmail bouskilare (change icon to generic mail)
