@@ -140,8 +140,24 @@ print_success "Git configured with username: $git_username and email: $git_email
 # Download all packages
 if [ -f ~/.config/pkglist.txt ]; then
     print_info "Installing packages from pkglist.txt..."
-    sudo pacman -S --needed --noconfirm - < ~/.config/pkglist.txt
-    print_success "Packages installed"
+    failed_pkgs=()
+    while IFS= read -r pkg || [ -n "$pkg" ]; do
+        [ -z "$pkg" ] && continue
+        case "$pkg" in \#*) continue ;; esac
+
+        if sudo pacman -S --needed --noconfirm "$pkg"; then
+            print_success "Installed $pkg"
+        else
+            print_error "Failed to install $pkg (skipping)"
+            failed_pkgs+=("$pkg")
+        fi
+    done < ~/.config/pkglist.txt
+
+    if [ ${#failed_pkgs[@]} -eq 0 ]; then
+        print_success "Packages installed"
+    else
+        print_error "Packages failed: ${failed_pkgs[*]}"
+    fi
 else
     print_error "pkglist.txt not found"
 fi
