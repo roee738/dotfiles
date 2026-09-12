@@ -35,9 +35,13 @@ fi
 # Update mirrors
 print_info "Updating package mirrors..."
 sudo pacman -S --needed --noconfirm reflector
-sudo reflector --country US,Canada --age 12 --protocol https --sort rate --fastest 5 --save /etc/pacman.d/mirrorlist
+if sudo reflector --country US,Canada --age 12 --protocol https --sort rate --fastest 5 --save /etc/pacman.d/mirrorlist; then
+    print_success "Mirrors updated"
+else
+    print_error "Reflector failed, continuing with existing mirrorlist"
+fi
 sudo pacman -Syu --noconfirm
-print_success "Mirrors updated"
+print_success "System updated"
 
 # Edit pacman.conf
 print_info "Configuring pacman..."
@@ -59,10 +63,17 @@ else
 fi
 
 # Change default shell to zsh
-print_info "Installing zsh and setting as default shell..."
+print_info "Checking default shell..."
 sudo pacman -S --needed --noconfirm zsh
-chsh -s $(which zsh)
-print_success "Zsh set as default shell (requires logout/reboot to take effect)"
+if [ "$SHELL" != "$(which zsh)" ]; then
+    if chsh -s "$(which zsh)"; then
+        print_success "Zsh set as default shell (requires logout/reboot to take effect)"
+    else
+        print_error "Failed to change shell to zsh"
+    fi
+else
+    print_success "Zsh already set as default shell"
+fi
 
 # Setup SSH key for GitHub
 print_info "Checking for SSH key..."
@@ -109,7 +120,10 @@ fi
 # Clone dotfiles repo
 if [ ! -d "$HOME/.dotfiles" ]; then
     print_info "Cloning dotfiles repository..."
-    git clone --bare git@github.com:roee738/dotfiles.git $HOME/.dotfiles
+    if ! git clone --bare git@github.com:roee738/dotfiles.git "$HOME/.dotfiles"; then
+        print_error "Failed to clone dotfiles repo - cannot continue without it"
+        exit 1
+    fi
     print_success "Dotfiles cloned"
 else
     print_success "Dotfiles already cloned"
@@ -117,9 +131,12 @@ fi
 
 # Checkout dotfiles
 print_info "Restoring dotfiles..."
-/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME checkout -f
-/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
-print_success "Dotfiles restored"
+if /usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" checkout -f; then
+    print_success "Dotfiles restored"
+else
+    print_error "Dotfiles checkout had conflicts - check output above"
+fi
+/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" config --local status.showUntrackedFiles no
 
 # Configure git credentials
 if [ -z "$(git config --global user.name 2>/dev/null)" ] || [ -z "$(git config --global user.email 2>/dev/null)" ]; then
@@ -171,7 +188,6 @@ if [ -f ~/.config/aurlist.txt ]; then
     print_info "Installing AUR packages from aurlist.txt..."
     failed_aur_pkgs=()
     while IFS= read -r pkg || [ -n "$pkg" ]; do
-        # Skip blank lines and comments
         [ -z "$pkg" ] && continue
         case "$pkg" in \#*) continue ;; esac
 
@@ -195,18 +211,25 @@ fi
 # Install zsh plugins
 print_info "Installing zsh plugins..."
 mkdir -p ~/.config/zsh/plugins
-[ ! -d ~/.config/zsh/plugins/zsh-autosuggestions ] && \
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/plugins/zsh-autosuggestions
-[ ! -d ~/.config/zsh/plugins/zsh-syntax-highlighting ] && \
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/plugins/zsh-syntax-highlighting
-[ ! -d ~/.config/zsh/plugins/zsh-history-substring-search ] && \
-    git clone https://github.com/zsh-users/zsh-history-substring-search ~/.config/zsh/plugins/zsh-history-substring-search
-print_success "Zsh plugins installed"
+
+if [ ! -d ~/.config/zsh/plugins/zsh-autosuggestions ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/plugins/zsh-autosuggestions \
+        || print_error "Failed to clone zsh-autosuggestions"
+fi
+if [ ! -d ~/.config/zsh/plugins/zsh-syntax-highlighting ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.config/zsh/plugins/zsh-syntax-highlighting \
+        || print_error "Failed to clone zsh-syntax-highlighting"
+fi
+if [ ! -d ~/.config/zsh/plugins/zsh-history-substring-search ]; then
+    git clone https://github.com/zsh-users/zsh-history-substring-search ~/.config/zsh/plugins/zsh-history-substring-search \
+        || print_error "Failed to clone zsh-history-substring-search"
+fi
+print_success "Zsh plugins step complete"
 
 # Disable SDDM
 if systemctl is-enabled sddm.service &> /dev/null; then
     print_info "Disabling SDDM..."
-    sudo systemctl disable sddm.service
+    sudo systemctl disable sddm.service || print_error "Failed to disable SDDM"
     print_success "SDDM disabled"
 else
     print_info "SDDM is not enabled, skipping..."
@@ -249,9 +272,16 @@ if ls /sys/class/power_supply/ | grep -q "^BAT"; then
     print_success "Packages installed"
     
     # Start auto-cpufreq
-    print_info "Starting auto-cpufreq service..."
-    sudo auto-cpufreq --install
-    print_success "Auto-cpufreq started"
+    print_info "Checking auto-cpufreq..."
+    if ! systemctl is-active --quiet auto-cpufreq 2>/dev/null; then
+        if sudo auto-cpufreq --install; then
+            print_success "Auto-cpufreq installed and started"
+        else
+            print_error "auto-cpufreq install failed"
+        fi
+    else
+        print_success "auto-cpufreq already running"
+    fi
 
     # Configure logind
     print_info "Configuring logind..."
