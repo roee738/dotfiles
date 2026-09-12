@@ -149,8 +149,25 @@ fi
 # Install AUR packages
 if [ -f ~/.config/aurlist.txt ]; then
     print_info "Installing AUR packages from aurlist.txt..."
-    yay -S --needed --noconfirm - < ~/.config/aurlist.txt
-    print_success "AUR packages installed"
+    failed_aur_pkgs=()
+    while IFS= read -r pkg || [ -n "$pkg" ]; do
+        # Skip blank lines and comments
+        [ -z "$pkg" ] && continue
+        case "$pkg" in \#*) continue ;; esac
+
+        if yay -S --needed --noconfirm "$pkg"; then
+            print_success "Installed $pkg"
+        else
+            print_error "Failed to install $pkg (skipping)"
+            failed_aur_pkgs+=("$pkg")
+        fi
+    done < ~/.config/aurlist.txt
+
+    if [ ${#failed_aur_pkgs[@]} -eq 0 ]; then
+        print_success "AUR packages installed"
+    else
+        print_error "AUR packages failed: ${failed_aur_pkgs[*]}"
+    fi
 else
     print_error "aurlist.txt not found"
 fi
