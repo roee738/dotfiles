@@ -34,15 +34,23 @@ fi
 
 # Update mirrors
 print_info "Updating package mirrors..."
-sudo pacman -S --needed --noconfirm reflector
-if sudo reflector --country US,Canada --age 12 --protocol https --sort rate --fastest 5 --save /etc/pacman.d/mirrorlist; then
-    print_success "Mirrors updated"
+if ! sudo pacman -S --needed --noconfirm reflector; then
+    print_error "Failed to install reflector - skipping mirror update"
 else
-    print_error "Reflector failed, continuing with existing mirrorlist"
+    if sudo reflector --country US,Canada --age 12 --protocol https --sort rate --fastest 5 --save /etc/pacman.d/mirrorlist; then
+        print_success "Mirrors updated"
+    else
+        print_error "Reflector failed, continuing with existing mirrorlist"
+    fi
 fi
-sudo pacman -Syu --noconfirm
-print_success "System updated"
 
+if sudo pacman -Syu --noconfirm; then
+    print_success "System updated"
+else
+    print_error "System update failed - continuing anyway"
+fi
+
+# Edit pacman.conf
 print_info "Configuring pacman..."
 sudo sed -i 's/^#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf \
     || print_error "Failed to enable VerbosePkgLists"
@@ -53,20 +61,23 @@ print_success "Pacman configured"
 # Install yay
 if ! command -v yay &> /dev/null; then
     print_info "Installing yay..."
-    sudo pacman -S --needed --noconfirm git base-devel go
-    git clone https://aur.archlinux.org/yay.git /tmp/yay-build
-    cd /tmp/yay-build
-    makepkg -si --noconfirm
-    cd - > /dev/null
-    print_success "Yay installed"
+    if sudo pacman -S --needed --noconfirm git base-devel go \
+        && rm -rf /tmp/yay-build \
+        && git clone https://aur.archlinux.org/yay.git /tmp/yay-build \
+        && (cd /tmp/yay-build && makepkg -si --noconfirm); then
+        print_success "Yay installed"
+    else
+        print_error "Failed to install yay - AUR packages will be skipped later"
+    fi
 else
     print_success "Yay already installed"
 fi
 
 # Change default shell to zsh
 print_info "Checking default shell..."
-sudo pacman -S --needed --noconfirm zsh
-if [ "$SHELL" != "$(which zsh)" ]; then
+if ! sudo pacman -S --needed --noconfirm zsh; then
+    print_error "Failed to install zsh - skipping shell change"
+elif [ "$SHELL" != "$(which zsh)" ]; then
     if chsh -s "$(which zsh)"; then
         print_success "Zsh set as default shell (requires logout/reboot to take effect)"
     else
@@ -185,7 +196,9 @@ else
 fi
 
 # Install AUR packages
-if [ -f ~/.config/aurlist.txt ]; then
+if ! command -v yay &> /dev/null; then
+    print_error "yay not found - skipping AUR packages"
+elif [ -f ~/.config/aurlist.txt ]; then
     print_info "Installing AUR packages from aurlist.txt..."
     failed_aur_pkgs=()
     while IFS= read -r pkg || [ -n "$pkg" ]; do
@@ -245,19 +258,22 @@ while [[ -z "$efi_partition" ]]; do
     echo "Partition cannot be empty."
     read -r efi_partition
 done
-sudo mkdir -p /mnt/windows-efi
-
-if sudo mount "/dev/$efi_partition" /mnt/windows-efi; then
+if ! sudo mkdir -p /mnt/windows-efi; then
+    print_error "Failed to create /mnt/windows-efi - skipping Windows bootloader entry"
+elif sudo mount "/dev/$efi_partition" /mnt/windows-efi; then
     print_success "Windows EFI partition mounted"
     print_info "Copying Windows EFI files..."
     if [ -d /mnt/windows-efi/EFI/Microsoft ]; then
-        sudo cp -r /mnt/windows-efi/EFI/Microsoft /boot/EFI/
-        print_success "Windows EFI files copied"
+        if sudo cp -r /mnt/windows-efi/EFI/Microsoft /boot/EFI/; then
+            print_success "Windows EFI files copied"
+        else
+            print_error "Failed to copy Windows EFI files"
+        fi
     else
         print_error "Microsoft EFI folder not found on /dev/$efi_partition"
     fi
-    sudo umount /mnt/windows-efi
-    print_success "Windows EFI partition unmounted"
+    sudo umount /mnt/windows-efi || print_error "Failed to unmount /mnt/windows-efi"
+    print_success "Windows EFI step complete"
 else
     print_error "Failed to mount /dev/$efi_partition"
 fi
@@ -269,8 +285,11 @@ if ls /sys/class/power_supply/ | grep -q "^BAT"; then
     
     # Install laptop specific packages
     print_info "Installing laptop specific packages..."
-    sudo pacman -S --needed --noconfirm acpi brightnessctl
-    print_success "Packages installed"
+    if sudo pacman -S --needed --noconfirm acpi brightnessctl; then
+        print_success "Packages installed"
+    else
+        print_error "Failed to install laptop packages - continuing"
+    fi
     
     # Start auto-cpufreq
     print_info "Checking auto-cpufreq..."
@@ -286,8 +305,10 @@ if ls /sys/class/power_supply/ | grep -q "^BAT"; then
 
     # Configure logind
     print_info "Configuring logind..."
-    sudo sed -i 's/^#HandleSuspendKey=suspend/HandleSuspendKey=ignore/' /etc/systemd/logind.conf
-    sudo sed -i 's/^#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
+    sudo sed -i 's/^#HandleSuspendKey=suspend/HandleSuspendKey=ignore/' /etc/systemd/logind.conf \
+        || print_error "Failed to set HandleSuspendKey"
+    sudo sed -i 's/^#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf \
+        || print_error "Failed to set HandlePowerKey"
     print_success "logind configured"
 fi
 
