@@ -43,10 +43,11 @@ fi
 sudo pacman -Syu --noconfirm
 print_success "System updated"
 
-# Edit pacman.conf
 print_info "Configuring pacman..."
-sudo sed -i 's/^#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
-sudo sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
+sudo sed -i 's/^#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf \
+    || print_error "Failed to enable VerbosePkgLists"
+sudo sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf \
+    || print_error "Failed to enable ParallelDownloads"
 print_success "Pacman configured"
 
 # Install yay
