@@ -53,7 +53,7 @@
 
 ### School Space
 1. Create a new space called "School"
-2. Change icon to graduation cap
+2. Change icon to open book icon
 3. Edit theme to campus blue gradient
 
 ## Container Tabs
@@ -86,13 +86,14 @@
 
 ### School Container
 - **Essential tabs:**
-  - Gmail (bouskilare)
-  - Claude
+  - Gmail (roee738)
   - ChatGPT
-  - GitHub
+  - Brightspace (change icon to graduation cap)
+  - Claude
   - UVic
-  - Brightspace
+  - Calendar
   - Outlook
+  - Gemini
 
 ## Additional settings
 
